@@ -31,4 +31,5 @@ class BakerUserLoginTest extends DrupalWebTestCase {
         $user->roles[$index] = 'authenticated';
         return user_save($user);
     }
+
 }
