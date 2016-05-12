@@ -1,0 +1,42 @@
+<?php
+
+class MyDateTestCase extends DrupalUnitTestCase
+{
+    public static function getInfo()
+    {
+        return array(
+            'name' => 'My Date unit tests',
+            'description' => 'Test that mydate_empty_mysql_date works properly',
+            'group' => 'Epicodus Examples Tests',
+        );
+    }
+    function testEmptyMySqlDate()
+    {
+        $description = 'An empty string should return TRUE.';
+
+        //Arrange: create input
+        $input = '';
+
+        //Act: run the function we're testing with input and store the output as $result
+        $result = mydate_empty_mysql_date($input);
+
+        //Assert
+        $this->assertTrue($result, $description);
+
+        $description = 'A NULL value should return TRUE.';
+        $input = NULL;
+        $result = mydate_empty_mysql_date($input);
+        $this->assertTrue($result, $description);
+
+        $description = 'An empty MySQL date should return TRUE';
+        $input = '0000-00-00';
+        $result = mydate_empty_mysql_date($input);
+        $this->assertTrue($result, $description);
+
+        $description = 'A valid date should return FALSE.';
+        $input = date('Y-m-d'); //input is today's date.
+        $result = mydate_empty_mysql_date($input);
+        $this->assertFalse($result, $description);
+    }
+
+}
